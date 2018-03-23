@@ -2,9 +2,9 @@
 
 [Linkki sivulle](https://peaceful-plains-52396.herokuapp.com/)
 
-[Linkki user storyhin](documents/user_stories)
+[Linkki user storyhin](documents/user_stories.md)
 
-[Linkki tietokantakaavioon](documents/tietokantakaavio)
+[Linkki tietokantakaavioon](documents/tietokantakaavio.pdf)
 
 Toimintoja:
 
