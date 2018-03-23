@@ -1,5 +1,11 @@
 # Keskustelufoorumi
 
+[Linkki sivulle](https://peaceful-plains-52396.herokuapp.com/)
+
+[Linkki user storyhin](documents/user_stories)
+
+[Linkki tietokantakaavioon](documents/tietokantakaavio)
+
 Toimintoja:
 
 Kirjautuminen
