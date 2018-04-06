@@ -5,7 +5,7 @@ from flask import render_template, request
 def users_form():
     return render_template("users/new.html")
 
-@app.route("/user/", methods=["POST"])
+@app.route("/user/new/", methods=["POST"])
 def users_create():
     print(request.form.get("name"))
 
