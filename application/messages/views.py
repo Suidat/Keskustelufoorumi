@@ -6,4 +6,4 @@ from application.messages.forms import MessageForm
 
 @app.route("/messages/new/")
 def messages_form():
-    return render_template("messages/new.html", form = TaskForm())
+    return render_template("messages/new.html", form = MessageForm())

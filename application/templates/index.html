@@ -7,8 +7,10 @@
 
   <body>
     <ul>
-<li><a href="{{ url_for('discussion_index') }}">All discussions</a></li>
-<li><a href="{{ url_for('user_page') }}">My page</a></li>
+
+<li><a href="{{ url_for('discussions_index') }}">All discussions</a></li>
+<li><a href="{{ url_for('users_own') }}">My page</a></li>
+
     </ul>
 
     {% block body %}
