@@ -1,13 +1,8 @@
 from application import db
+from application.models import Base
 
-class Message(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
-
+class Message(Base):
     message = db.Column(db.Text, nullable=False)
-
     group_id = db.Column(db.Integer, db.ForeignKey('Group.id'), nullable = False)
     sender_id = db.Column(db.Integer, db.ForeignKey('Account.id'), nullable = False)
 

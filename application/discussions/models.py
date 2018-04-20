@@ -1,20 +1,12 @@
 from application import db
+from application.models import Base
 
-class Discussion(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
-
+class Discussion(Base):
+    __tablename__ = 'Discussion'
     name = db.Column(db.String(144), nullable=False)
+    group = db.Column(db.Integer, db.ForeignKey('Group.id'), nullable = False)
+    owner = db.Column(db.Integer, db.ForeignKey('Account.id'), nullable = False)
+
 
     def __init__(self, name):
         self.name = name
-
-class DiscussionMessageLink(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    message_id = db.Column(db.Integer, db.ForeignKey('Message.id'), nullable = False)
-    discussion_id = db.Column(db.Integer, db.ForeignKey('Discussion.id'), nullable = False)
-
-    def __init__(self, message, discussion):
-        self.message_id = message
-        slef.discussion_id = discussion
