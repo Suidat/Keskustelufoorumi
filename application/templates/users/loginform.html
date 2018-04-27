@@ -3,11 +3,35 @@
 {% block body %}
 <p>
 To login enter your username and password.
-
 </p>
+<p>
+If you have not yet signed up to use the application do so here
+<a href="{{url_for('users_create')}}">Sign Up</a>
+</p>
+{{ error }}
 <form method="POST" action="{{ url_for('auth_login') }}">
-  <input type="text" name="name"/>
-  <input type="text" name="password"/>
-  <input type="submit" value="login"/>
+  <table>
+    <tr>
+      <td>
+	{{ form.username.label }}
+      </td>
+      <td>
+	{{ form.username }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+	{{ form.password.label }}
+      </td>
+      <td>
+	{{ form.password }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+	<input type="submit" value="Login"/>
+      </td>
+    </tr>
 </form>
+
 {% endblock %}

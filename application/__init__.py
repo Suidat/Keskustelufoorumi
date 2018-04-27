@@ -54,13 +54,12 @@ def login_required(role="ANY"):
         return decorated_view
     return wrapper
 
-
+#database creation and view imports
 from application import views
 from application.messages import views
 from application.auth import views
 from application.groups import views
 from application.discussions import views
-
 from application.auth import models
 from application.groups import models
 from application.discussions import models
@@ -68,7 +67,8 @@ from application.messages import models
 from application import models
 
 db.create_all()
+from application.auth.models import Account
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(user_id)
+    return Account.query.get(user_id)

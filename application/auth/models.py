@@ -3,7 +3,7 @@ from application.models import Base
 
 class Account(Base):
     __tablename__ = 'Account'
-    name = db.Column(db.String(144), nullable=False)
+    name = db.Column(db.String(144), nullable=False, unique=True)
     password = db.Column(db.String(200), nullable=False)
 
     def __init__(self, name, password):
