@@ -2,9 +2,9 @@ from application import app, db, login_required
 from flask import render_template, request
 from application.discussions.models import Discussion
 
-@app.route("/groups/own")
-def groups_mine():
-    return render_template("discussions/own.html")
+@app.route("/groups/")
+def groups_index():
+    return render_template("group/index.html")
 
 @app.route("/groups/<int:param>")
 def group_home(param):

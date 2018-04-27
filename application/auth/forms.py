@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField
 
 class AccountForm(FlaskForm):
-    name = StringField("username")
+    username = StringField("username")
     password = PasswordField("password")
 
     class Meta:

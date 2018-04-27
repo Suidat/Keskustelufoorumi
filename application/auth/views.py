@@ -15,7 +15,7 @@ def users_create():
     db.session().add(u)
     db.session().commit()
 
-    return redirect(url_for("auth_login"))
+    return redirect(url_for("auth_login"), error = "Please login to complete signup")
 
 @app.route("/user/own")
 @login_required

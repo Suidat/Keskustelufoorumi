@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {{ error }}
-<form method="POST" action="{{ url_for('groups_new') }}">
+<form method="POST" action="{{ url_for('discussions_new') }}">
   <table>
     <tr>
       <td>
@@ -12,7 +12,7 @@
     </tr>
     <tr>
       <td colspan="2">
-	<input type="submit" value="New Group"/>
+	<input type="submit" value="New Discussion"/>
       </td>
     </tr>
 </form>
