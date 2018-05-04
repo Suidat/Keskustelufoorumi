@@ -3,6 +3,9 @@
 
     {% block body %}
     <p>
-Content.
+      {% if current_user.is_authenticated %}
+      this is your current id : {{current_user.id}}
+      {% endif %}
+
     </p>
     {% endblock %}

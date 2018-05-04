@@ -1,4 +1,6 @@
 {% extends "layout.html" %}
+{% block body %}
+
 {{ error }}
 <form method="POST" action="{{ url_for('groups_new') }}">
   <table>
@@ -16,3 +18,4 @@
       </td>
     </tr>
 </form>
+{% endblock %}

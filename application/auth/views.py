@@ -18,7 +18,7 @@ def users_create():
     return redirect(url_for("auth_login"), error = "Please login to complete signup")
 
 @app.route("/user/own")
-@login_required
+@login_required()
 def users_own():
     return render_template("users/own.html")
 
