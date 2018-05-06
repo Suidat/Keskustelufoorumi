@@ -1,16 +1,20 @@
 {% extends "layout.html" %}
 {% block body %}
 
-  <table>
+  <table width = "400">
     <tr>
       <th>Discussion</th>
-      <th>Author</th>
+      <th>Creator</th>
     </tr>
     {% for d in discussions %}
     <tr>
-      <td><a href="{{url_for('discussion_home', param = d.id)}}"> {{ d.name }}</a></td>
-      <td>{{ d.owner }}</td>
+      <td><a href="{{url_for('discussion_home', target = d.id)}}"> {{ d.name }}</a></td>
+      <td>{{ d.username }}</td>
     </tr>
     {% endfor %}
   </table>
+  <b>
+    <br /><br /><br />
+    <a href="{{url_for('discussions_new', param = target)}}"> Create new discussion </a>
+  </b>
 {% endblock %}

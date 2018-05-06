@@ -10,12 +10,12 @@ def users_form():
 
 @app.route("/user/new", methods=["POST"])
 def users_create():
-    u = Account(request.form.get("name"), request.form.get("password"))
+    u = Account(request.form.get("username"), request.form.get("password"))
 
     db.session().add(u)
     db.session().commit()
 
-    return redirect(url_for("auth_login"), error = "Please login to complete signup")
+    return render_template("users/loginform.html", form = LoginForm(), error = "Please login to complete signup")
 
 @app.route("/user/own")
 @login_required()

@@ -1,5 +1,40 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<table width = "400">
+  <tr>
+    <th>Message</th>
+    <th>Sender</th>
+    <th>Actions</th>
+  </tr>
+  {% for m in messages %}
+  <tr>
+    <td>{{ m.message }}</td>
+    <td>{{ m.username }}</td>
+    <td>
+      {% if current_user.id == m.sender_id %}
+      <a href="{{url_for('message_delete', param=m.id)}}">Delete</a>
+      {% endif %}
+    </a>
 
+  </tr>
+  {% endfor %}
+</table>
+<br /><br /><br />
+<form method="POST" action="{{ url_for('messages_create', target = target) }}">
+  <table>
+    <tr>
+      <td>
+	{{ form.message.label }}
+      </td>
+      <td>
+	{{ form.message }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+	<input type="submit" value="Post message"/>
+      </td>
+    </tr>
+</form>
 {% endblock %}

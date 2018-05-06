@@ -11,7 +11,7 @@ class Base(db.Model):
 
 class GroupAccountLink(Base):
 
-    group_id = db.Column(db.Integer, db.ForeignKey('Group.id'), nullable = False)
+    group_id = db.Column(db.Integer, db.ForeignKey('Groups.id'), nullable = False)
     account_id = db.Column(db.Integer, db.ForeignKey('Account.id'), nullable = False)
 
     def __init__(self, group_id, account_id):

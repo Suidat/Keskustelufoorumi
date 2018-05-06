@@ -2,7 +2,7 @@
 {% block body %}
 
 {{ error }}
-<form method="POST" action="{{ url_for('discussions_new') }}">
+<form method="POST" action="{{ url_for('discussions_new', param = param) }}">
   <table>
     <tr>
       <td>

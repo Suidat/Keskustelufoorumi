@@ -1,11 +1,22 @@
 {% extends "layout.html" %}
 
 
-    {% block body %}
-    <p>
-      {% if current_user.is_authenticated %}
-      this is your current id : {{current_user.id}}
-      {% endif %}
+{% block body %}
 
-    </p>
-    {% endblock %}
+<table width = "400">
+  <tr>
+    <th>Group</th>
+    <th>Owner</th>
+  </tr>
+  {% for g in groups %}
+  <tr>
+    <td><a href="{{url_for('group_home', param = g.id)}}"> {{ g.name }}</a></td>
+    <td>{{ g.username }}</td>
+  </tr>
+  {% endfor %}
+</table>
+  <b>
+    <br />
+    <a href="{{url_for('groups_new')}}">Create new group</a>
+  </b>
+{% endblock %}

@@ -4,23 +4,27 @@ from flask_login import current_user
 
 from application.discussions.forms import DiscussionForm
 from application.discussions.models import Discussion
+from application.messages.forms import MessageForm
+from application.messages.models import Message
 
-@app.route("/discussions/")
-def discussions_index():
-
-    return render_template("discussions/index.html")
+@app.route("/discussions/<int:target>")
+@login_required()
+def discussion_home(target):
+    disc = Message.find_messages_with_usernames(target)
+    return render_template("discussions/index.html", messages = disc, form = MessageForm(), target = target)
 
 
 @app.route("/groups/<int:param>/new", methods=["POST", "GET"])
+@login_required()
 def discussions_new(param):
     if request.method == "GET":
         if current_user.is_authenticated:
-            return render_template("discussions/new.html", form = DiscussionForm())
+            return render_template("discussions/new.html", form = DiscussionForm(), param = param)
         else:
-             return redirect(url_for("discussions_index"))
+             return redirect(url_for("index"))
 
-    d = Discussion(request.form.get("name"), param, current_user.user_id)
+    d = Discussion(request.form.get("name"), param, current_user.get_id())
     db.session().add(d)
     db.session().commit()
 
-    return render_template("discussions/index.html")
+    return redirect(url_for("discussion_home", target = param))
