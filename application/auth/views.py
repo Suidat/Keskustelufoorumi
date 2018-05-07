@@ -10,7 +10,7 @@ def users_form():
 
 @app.route("/user/new", methods=["POST"])
 def users_create():
-    u = Account(request.form.get("username"), request.form.get("password"))
+    u = Account(request.form.get("username"), request.form.get("password"), "User")
 
     db.session().add(u)
     db.session().commit()

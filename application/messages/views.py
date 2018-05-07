@@ -20,7 +20,7 @@ def messages_create(target):
 @login_required()
 def message_delete(param):
 
-    toDelete = Message.query.filter_by(id = param)
+    toDelete = Message.query.filter_by(id = param).first()
     if toDelete.sender_id == current_user.get_id():
         Message.delete_message_with_id(param)
     return redirect(url_for("discussion_home", target = toDelete.discussion_id))
