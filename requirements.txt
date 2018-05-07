@@ -8,7 +8,6 @@ boto==2.38.0
 chardet==2.3.0
 click==6.7
 cryptography==1.2.3
-cvxopt==1.1.4
 cycler==0.9.0
 decorator==4.0.6
 docutils==0.12
