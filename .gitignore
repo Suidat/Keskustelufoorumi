@@ -80,4 +80,3 @@ venv.bak/
 /site
 
 .mypy_cache/
-/application/database.db
