@@ -67,7 +67,11 @@ from application.discussions import models
 from application.messages import models
 from application import models
 
-db.create_all()
+try:
+    db.create_all()
+except:
+    pass
+
 from application.auth.models import Account
 
 @login_manager.user_loader
