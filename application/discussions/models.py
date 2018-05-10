@@ -17,7 +17,7 @@ class Discussion(Base):
 
     @staticmethod
     def find_owned_discussions(arg):
-        stmt = text("SELECT Discussion.*, Account.name as username, COUNT(Message.id) as amount From Discussion, Account, Message  WHERE Discussion.owner_id = Account.id AND Account.id = :id AND Message.discussion_id=Discussion.id GROUP BY Discussion.id").params(id = arg)
+        stmt = text("SELECT Discussion.*, Account.id, COUNT(Message.id) AS amount FROM Account, Discussion LEFT OUTER JOIN Message ON Discussion.id = Message.discussion_id WHERE Discussion.owner_id = Account.id AND Account.id = :id GROUP BY discussion_id").params(id = arg)
         res = db.engine.execute(stmt)
         return res
 

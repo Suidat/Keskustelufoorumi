@@ -36,9 +36,10 @@ def message_delete(param):
         return redirect(url_for("index"))
 
     toDelete = Message.query.filter_by(id = param).first()
+    d_id = toDelete.discussion_id
     if toDelete.sender_id == current_user.get_id():
         Message.delete_message_with_id(param)
-    return redirect(url_for("discussion_home", target = toDelete.discussion_id))
+    return redirect(url_for("discussion_home", target = d_id))
 
 @app.route("/message/edit/<int:param>", methods=["POST", "GET"])
 @login_required()
