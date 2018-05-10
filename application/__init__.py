@@ -22,7 +22,7 @@ app.config["SECRET_KEY"] = urandom(32)
 
 from flask_login import LoginManager, current_user
 login_manager = LoginManager()
-login_manager.setup_app(app)
+login_manager.init_app(app)
 
 login_manager.login_view = "auth_login"
 login_manager.login_message = "Please login to use this functionality."
@@ -31,7 +31,7 @@ login_manager.login_message = "Please login to use this functionality."
 # roles in login_required
 from functools import wraps
 
-def login_required():
+def login_required(role="ANY"):
     def wrapper(fn):
         @wraps(fn)
         def decorated_view(*args, **kwargs):
@@ -39,6 +39,14 @@ def login_required():
                 return login_manager.unauthorized()
 
             unauthorized = False
+
+            if role != "ANY":
+                unauthorized = True
+
+                user_role = current_user.role()
+                if user_role == role:
+                    unauthorized = False
+
 
             if unauthorized:
                 return login_manager.unauthorized()
@@ -64,7 +72,7 @@ try:
 except:
     pass
 
-from application.auth.models import Account
+    from application.auth.models import Account
 
 @login_manager.user_loader
 def load_user(user_id):
