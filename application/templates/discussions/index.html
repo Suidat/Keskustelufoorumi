@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<table width = "400">
+<table width = "600", border = 1px solid black, border-collapse = collapse;>
   <tr>
     <th>Message</th>
     <th>Sender</th>
@@ -13,7 +13,9 @@
     <td>{{ m.username }}</td>
     <td>
       {% if current_user.id == m.sender_id %}
-      <a href="{{url_for('message_delete', param=m.id)}}">Delete</a>
+      <a href="{{url_for('message_delete', param=m.id)}}">Delete </a>
+      <br />
+      <a href="{{url_for('message_edit', param=m.id)}}">Edit</a>
       {% endif %}
     </a>
 
@@ -28,7 +30,7 @@
 	{{ form.message.label }}
       </td>
       <td>
-	{{ form.message }}
+	{{ form.message(size=50) }}
       </td>
     </tr>
     <tr>

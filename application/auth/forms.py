@@ -14,3 +14,7 @@ class LoginForm(FlaskForm):
 
     class Meta:
         csrf = False
+class EditForm(FlaskForm):
+    password_old = StringField("Old Password")
+    password_new1 = StringField("New Password")
+    password_new2 = StringField("Retype new password")

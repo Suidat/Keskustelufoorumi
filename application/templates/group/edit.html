@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+
+<p> Edit Group </p>
+
+<form method="POST" action="{{ url_for('group_edit', param = id) }}">
+  <table>
+    <tr>
+      <td>
+	{{ form.name.label }}
+      </td>
+      <td>
+	{{ form.name }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+	<input type="submit" value="Edit group"/>
+      </td>
+    </tr>
+</form>
+
+{% endblock %}

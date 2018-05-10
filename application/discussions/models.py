@@ -16,6 +16,12 @@ class Discussion(Base):
         self.owner_id = owner
 
     @staticmethod
+    def find_owned_discussions(arg):
+        stmt = text("SELECT Discussion.*, Account.name as username, COUNT(Message.id) as amount From Discussion, Account, Message  WHERE Discussion.owner_id = Account.id AND Account.id = :id AND Message.discussion_id=Discussion.id GROUP BY Discussion.id").params(id = arg)
+        res = db.engine.execute(stmt)
+        return res
+
+    @staticmethod
     def find_usernames_for_all_discussion_owners():
             stmt = text("SELECT Account.name as username, Discussion.* from Account, Discussion WHERE Account.id = Discussion.owner_id")
             res = db.engine.execute(stmt)
@@ -23,6 +29,6 @@ class Discussion(Base):
 
     @staticmethod
     def find_usernames_for_discussion_owners(param):
-            stmt = text("SELECT Account.name as username, Discussion.* from Account, Discussion WHERE Account.id = Discussion.owner_id AND Discussion.group_id = :id").params(id = param)
+            stmt = text("SELECT Account.name as username, Discussion.* from Account, Discussion WHERE Account.id = Discussion.owner_id AND Discussion.group_id = :id ").params(id = param)
             res = db.engine.execute(stmt)
             return res

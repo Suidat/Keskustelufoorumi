@@ -1,6 +1,84 @@
 {% extends "layout.html" %}
 {% block body %}
-<p>
-Information on user will go here
-</p>
+
+<table width = "400">
+  <tr>
+    <th>
+      Your Groups
+    </th>
+    <th>
+      Actions
+    </th>
+  </tr>
+  {% for g in groups %}
+  <tr>
+    <td>
+      <a href="{{url_for('group_home', param = g.id)}}">{{ g.name }}</a>
+    </td>
+    <td>
+      <a href="{{url_for('group_edit', param = g.id)}}">Edit group</a>
+    </td>
+  </tr>
+  {% endfor %}
+<table>
+
+<br />
+<table width = "400">
+  <tr>
+    <th>
+      Your Discussions
+    </th>
+    <th>
+      Number of messages
+    </th>
+  </tr>
+  {% for d in discussions %}
+  <tr>
+    <td>
+      <a href="{{url_for('discussion_home', target = d.id)}}">{{ d.name }}</a>
+    </td>
+    <td>
+      {{ d.amount }}
+    </td>
+  </tr>
+  {% endfor %}
+<table>
+
+
+
+<br /><br /><br />
+<p>Change password</p>
+
+<form method="POST" action="{{ url_for('user_edit') }}">
+  <table>
+    <tr>
+      <td>
+	{{ form.password_old.label }}
+      </td>
+      <td>
+	{{ form.password_old }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+	{{ form.password_new1.label }}
+      </td>
+      <td>
+	{{ form.password_new1 }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+  {{ form.password_new2.label }}
+      </td>
+      <td>
+  {{ form.password_new2 }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+	<input type="submit" value="Change Password"/>
+      </td>
+    </tr>
+</form>
 {% endblock %}

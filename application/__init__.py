@@ -72,3 +72,10 @@ from application.auth.models import Account
 @login_manager.user_loader
 def load_user(user_id):
     return Account.query.get(user_id)
+
+
+#Go here for more information on this : http://www.gnuterrypratchett.com/
+@app.after_request
+def gnu_terry_pratchett(resp):
+  resp.headers.add("X-Clacks-Overhead", "GNU Terry Pratchett")
+  return resp

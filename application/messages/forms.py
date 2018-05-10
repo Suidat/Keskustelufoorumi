@@ -1,9 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField
+from wtforms import TextAreaField
 
 class MessageForm(FlaskForm):
-    message = StringField("message")
-
+    message = TextAreaField("message")
 
     class Meta:
         csrf = False

@@ -1,20 +1,63 @@
 {% extends "layout.html" %}
 {% block body %}
 
-  <table width = "400">
-    <tr>
-      <th>Discussion</th>
-      <th>Creator</th>
-    </tr>
-    {% for d in discussions %}
-    <tr>
-      <td><a href="{{url_for('discussion_home', target = d.id)}}"> {{ d.name }}</a></td>
-      <td>{{ d.username }}</td>
-    </tr>
-    {% endfor %}
-  </table>
-  <b>
-    <br /><br /><br />
-    <a href="{{url_for('discussions_new', param = target)}}"> Create new discussion </a>
-  </b>
+
+<table>
+  <tr>
+    <td>
+    <table width = "600">
+      <tr>
+        <th>Discussion</th>
+        <th>Creator</th>
+      </tr>
+      {% for d in discussions %}
+      <tr>
+        <td><a href="{{url_for('discussion_home', target = d.id)}}"> {{ d.name }}</a></td>
+        <td>{{ d.username }}</td>
+        <td>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    <b>
+      <br /><br /><br />
+      <a href="{{url_for('discussions_new', param = target)}}"> Create new discussion </a>
+    </b>
+    </td>
+    <td>
+      <table width = "300">
+        <tr>
+          <th>Members</th>
+          {% if current_user.get_id == group_owner %}
+          <th>Actions</th>
+          {% endif %}
+        </tr>
+        {% for m in members %}
+        <tr>
+          <td>{{ m.username }}</td>
+          <td>
+        {% if m.banned and current_user.id == group_owner%}
+          <a href="{{url_for('unban_user', toBan = m.id, group = target)}}">Unban User</a>
+        {% elif m.banned %}
+        <p>Banned</p>
+        {% elif current_user.id == group_owner and m.id != group_owner %}
+          <a href="{{url_for('ban_user', toBan = m.id, group = target)}}">Ban User</a>
+        {% endif %}
+        </td>
+        </tr>
+        {% endfor %}
+      </table>
+      <b>
+        <br /><br /><br />
+        {% if current_user.id == group_owner %}
+        <p> You own this group</p>
+        {% elif status %}
+        <p> You are a member of this group</p>
+        {% else %}
+        <a href="{{url_for('group_join', param = target)}}"> Join Group </a>
+        {% endif %}
+      </b>
+    </td>
+  </tr>
+</table>
 {% endblock %}

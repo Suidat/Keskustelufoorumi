@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+
+<p> Edit message </p>
+
+<form method="POST" action="{{ url_for('message_edit', param = id) }}">
+  <table>
+    <tr>
+      <td>
+	{{ form.message.label }}
+      </td>
+      <td>
+	{{ form.message(size=50) }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+	<input type="submit" value="Edit message"/>
+      </td>
+    </tr>
+</form>
+
+{% endblock %}
