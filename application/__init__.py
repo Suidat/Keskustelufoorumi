@@ -72,7 +72,7 @@ try:
 except:
     pass
 
-    from application.auth.models import Account
+from application.auth.models import Account
 
 @login_manager.user_loader
 def load_user(user_id):
