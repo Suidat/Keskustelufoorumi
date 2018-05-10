@@ -42,4 +42,4 @@ def discussions_new(param):
     db.session().add(d)
     db.session().commit()
 
-    return redirect(url_for("discussion_home", target = param))
+    return redirect(url_for("discussion_home", target = d.id))

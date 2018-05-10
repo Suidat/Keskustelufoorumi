@@ -37,7 +37,14 @@ def user_edit():
     if old.password == pold:
         if p1 == p2:
             Account.change_password(p1, current_user.get_id())
-    return redirect(url_for("user_own"))
+            return redirect(url_for("user_own"))
+        else:
+            e = "Your passwords do not match"
+    else:
+        e = "Your old password was wrong"
+    groups = Groups.find_usernames_for_group_owners()
+
+    return render_template("index.html", groups = groups, error = e)
 
 @app.route("/user/login", methods =["POST", "GET"])
 def auth_login():
