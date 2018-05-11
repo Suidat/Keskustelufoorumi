@@ -1,23 +1,16 @@
 # Keskustelufoorumi
 
-[Linkki sivulle](https://peaceful-plains-52396.herokuapp.com/)
+[Linkki sovelluksen sivulle](https://peaceful-plains-52396.herokuapp.com/)
 
 [Linkki user storyhin](documents/user_stories.md)
 
 [Linkki tietokantakaavioon](documents/tietokantakaavio.pdf)
 
-Toimintoja:
+[Linkki käyttöohjeisiin](documents/manual.md)
 
-Kirjautuminen
+[Tietorakenteista](documents/tietorakenteet.md)
 
-Kirjoituksen lisääminen
 
-Kirjoitusten näyttäminen eri kriteerein
+## Kuvaus
 
-Ryhmän jäsenen lisääminen, muokkaaminen ja poistaminen
-
-Vastineen laatiminen ja muokkaus
-
-Kirjoitusten poistaminen
-
-Aiheiden määrittely, muokkaus ja poisto
+Sovellus on Keskustelufoorumi, jolla voidaan luoda ryhmiä, keskusteluja sekä viestejä keskusteluihin. Keskusteluissa käyttäjät voivat poistaa omia viestejään, tai muokata niiden sisältöä. Sovelluksessa ei ole yksittäistä käyttäjää, joka voi hallinnoida koko sovellusta, vaan jokaisen ryhmän omistaja voi tarvittaessa poistaa keskusteluja tai estää käyttäjiä toimimasta ryhmässä.
