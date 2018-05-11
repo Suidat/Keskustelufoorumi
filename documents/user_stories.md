@@ -20,10 +20,14 @@ As an administrator I want to be able to remove users from my group/s | Changed 
 Joihinkin User storyhin liittyvät SQL-kyselyt onnistuivat simppelillä haulla, ja niitä ei ole listattu. Tässä on joitain SQL-kyselyitä, joille ei ole sopivaa user storyä:
 
 Haetaan Group tiedot, ja sen omistavan käyttäjän nimi
+``` SQL
 SELECT Groups.*, Account.name as username From Groups, Account WHERE Groups.owner_id = Account.id AND Account.id = :id
-
+```
 Haetaan käyttäjän kaikki keskustelut ja niihin kuuluvien viestien määrä
+```SQL
 SELECT Discussion.*, Account.id as user_id, COUNT(Message.id) AS amount FROM Account, Discussion LEFT OUTER JOIN Message ON Discussion.id = Message.discussion_id WHERE Discussion.owner_id = Account.id AND Account.id = :id GROUP BY Discussion.id
-
+```
 Haetaan ryhmään kuuluvien käyttäjien nimet ja ovatko he estettyjä
+``` SQL
 SELECT Account.id, Account.name As username, Linkag.group_id, Linkag.banned FROM Account, Linkag Where Linkag.account_id = Account.id AND Linkag.group_id = :id
+```
