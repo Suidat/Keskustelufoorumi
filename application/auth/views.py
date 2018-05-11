@@ -12,7 +12,7 @@ def users_form():
 
 @app.route("/user/new", methods=["POST"])
 def users_create():
-    old = Account.query.filter_by(name = request.form.get("username"))
+    old = Account.query.filter_by(name = request.form.get("username")).first()
     if old:
         return render_template("users/new.html", form = AccountForm(), error = "That name is taken")
 
