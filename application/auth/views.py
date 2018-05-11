@@ -15,6 +15,8 @@ def users_create():
     old = Account.query.filter_by(name = request.form.get("username")).first()
     if old:
         return render_template("users/new.html", form = AccountForm(), error = "That name is taken")
+    if not request.form.validate():
+        return render_template("users/new.html", form = AccountForm(), error = "Minimum length for name and password is 3")
 
     u = Account(request.form.get("username"), request.form.get("password"))
 
@@ -34,6 +36,9 @@ def user_own():
 @app.route("/user/edit", methods = ["POST"])
 @login_required()
 def user_edit():
+    if not request.form.validate():
+        e = "Minimum length for name and password is 3"
+
     p1 = request.form.get("password_new1")
     p2 = request.form.get("password_new2")
     pold = request.form.get("password_old")

@@ -32,13 +32,14 @@ def discussion_home(target, page=1):
 @app.route("/groups/<int:param>/new", methods=["POST", "GET"])
 @login_required()
 def discussions_new(param):
+    if not current_user.is_authenticated:
+        return redirect(url_for("index"))
     check_ban(param)
 
     if request.method == "GET":
-        if current_user.is_authenticated:
             return render_template("discussions/new.html", form = DiscussionForm(), param = param)
-        else:
-             return redirect(url_for("index"))
+    if not request.form.validate():
+        return render_template("discussions/new.html", form = DiscussionForm(), param = param, error = "Minimum length for name is 4")
     d = Discussion(request.form.get("name"), param, current_user.get_id())
     db.session().add(d)
     db.session().commit()

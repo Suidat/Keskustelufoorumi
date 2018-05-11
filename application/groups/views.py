@@ -46,7 +46,8 @@ def groups_new():
 @login_required()
 def groups_create():
     form = GroupForm(request.form)
-
+    if not form.validate():
+        return render_template("group/new.html", form = GroupForm(), error = "Minimum length for name is 4")
     g = Groups(form.name.data, current_user.get_id())
     db.session().add(g)
     db.session().commit()
@@ -94,8 +95,10 @@ def group_edit(param):
         form = GroupForm()
         form.name.data = toEdit.name
         return render_template("group/edit.html", form = form, id = param)
-    form = GroupForm(request.form)
 
+    form = GroupForm(request.form)
+    if not form.validate():
+        return render_template("group/edit.html", form = form, error = "Minimum length for name is 4
     Groups.edit_group(form.name.data, param)
 
 
