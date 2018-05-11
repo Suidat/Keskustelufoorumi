@@ -1,0 +1,42 @@
+
+{% extends "layout.html" %}
+
+{% block body %}
+
+{{ error }}
+
+
+<table>
+  <tr>
+    <td>
+    <table width = "600">
+      <tr>
+        <th>Discussion</th>
+      </tr>
+      {% for d in discussions %}
+      <tr>
+        <td><a href="{{url_for('discussion_home', target = d.id, page = 1)}}"> {{ d.name }}</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+    </td>
+    <td>
+      <table width = "600">
+      <tr>
+        <th>Group</th>
+      </tr>
+      {% for g in groups %}
+      <tr>
+        <td><a href="{{url_for('group_home', param = g.id)}}"> {{ g.name }}</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+    </td>
+  </tr>
+</table>
+
+
+<a href="{{ url_for('search_results', param = param, page=current+1) }}">&lt;&lt; Newer</a>
+&emsp;&emsp;
+<a href="{{ url_for('search_results', param = param, page=current-1) }}">Older &gt;&gt;</a>
+{% endblock %}

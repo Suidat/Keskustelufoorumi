@@ -29,3 +29,11 @@ class Groups(Base):
         res = db.engine.execute(stmt)
         db.session.commit()
         return res
+
+    @staticmethod
+    def search(arg, page):
+        search = '%'+arg+'%'
+        per_page = 10
+        stmt = text("SELECT * FROM Groups WHERE name LIKE :param ORDER BY date_created ASC LIMIT 10 OFFSET :page").params(param = search, page = (page*per_page-10))
+        res = db.engine.execute(stmt)
+        return res

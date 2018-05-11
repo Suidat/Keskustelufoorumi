@@ -6,14 +6,14 @@
 
 [Linkki tietokantakaavioon](documents/tietokantakaavio.pdf)
 
-[Linkki käyttöohjeisiin](documents/manual.md)
+[Linkki käyttö- ja asennusohjeisiin](documents/manual.md)
 
 [Tietorakenteista](documents/tietorakenteet.md)
 
 
 ## Kuvaus
 
-Sovellus on Keskustelufoorumi, jolla voidaan luoda ryhmiä, keskusteluja sekä viestejä keskusteluihin. Keskusteluissa käyttäjät voivat poistaa omia viestejään, tai muokata niiden sisältöä. Sovelluksessa ei ole yksittäistä käyttäjää, joka voi hallinnoida koko sovellusta, vaan jokaisen ryhmän omistaja voi tarvittaessa poistaa keskusteluja tai estää käyttäjiä toimimasta ryhmässä.
+Sovellus on Keskustelufoorumi, jolla voidaan luoda ryhmiä, keskusteluja sekä viestejä keskusteluihin. Keskusteluissa käyttäjät voivat poistaa omia viestejään, tai muokata niiden sisältöä. Sovelluksessa ei ole yksittäistä käyttäjää, joka voi hallinnoida koko sovellusta, vaan jokaisen ryhmän omistaja voi tarvittaessa poistaa keskusteluja tai estää käyttäjiä toimimasta ryhmässä. Sovellus toimii Herokussa, mutta sitä voi myös käyttää locaalisti terminaalista.
 
 ## Omat kokemukset
 
@@ -37,3 +37,5 @@ Sovellus on Keskustelufoorumi, jolla voidaan luoda ryhmiä, keskusteluja sekä v
   - Tätä voisi muuttaa, Account tietorakenteessa on jo mahdollisuus rooleille, mutta koska en katsonut sitä niin tarpeelliseksi, se ei tee mitään.
 
 - Jokaista ryhmää voi hallinoida vain yksi henkilö, mutta tämän voisi vaihtaa, esim mahdollistamalla samanlaisen toiminnon kuin käyttäjän banniminen, mutta vain adminiksi teossa.
+
+- Sovelluksen haku ominaisuus toimii hieman sovelluksen toimintaa vastaan, sillä sen avulla voi estetty käyttäjä nähdä kaikkien ryhmien sisäiset keskustelut. Tämän korjaaminen olisi työlästä, en ole edes keksinyt tapaa jolla toteuttaa tätä vielä.

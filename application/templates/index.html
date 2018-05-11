@@ -3,6 +3,24 @@
 
 {% block body %}
 {{error}}
+<form method="POST" action="{{ url_for('search')}}">
+  <table>
+    <tr>
+      <td>
+	{{ form.search.label }}
+      </td>
+      <td>
+	{{ form.search }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+	<input type="submit" value="Search"/>
+      </td>
+    </tr>
+</form>
+
+
 <table width = "600">
   <tr>
     <th>Group</th>

@@ -30,12 +30,20 @@ class Discussion(Base):
 
     @staticmethod
     def find_usernames_for_all_discussion_owners():
-            stmt = text("SELECT Account.name as username, Discussion.* from Account, Discussion WHERE Account.id = Discussion.owner_id")
-            res = db.engine.execute(stmt)
-            return res
+        stmt = text("SELECT Account.name as username, Discussion.* from Account, Discussion WHERE Account.id = Discussion.owner_id")
+        res = db.engine.execute(stmt)
+        return res
 
     @staticmethod
     def find_usernames_for_discussion_owners(param):
-            stmt = text("SELECT Account.name as username, Discussion.* from Account, Discussion WHERE Account.id = Discussion.owner_id AND Discussion.group_id = :id ").params(id = param)
-            res = db.engine.execute(stmt)
-            return res
+        stmt = text("SELECT Account.name as username, Discussion.* from Account, Discussion WHERE Account.id = Discussion.owner_id AND Discussion.group_id = :id ").params(id = param)
+        res = db.engine.execute(stmt)
+        return res
+
+    @staticmethod
+    def search(arg, page):
+        search = '%'+arg+'%'
+        per_page = 10
+        stmt = text("SELECT * FROM Discussion WHERE name LIKE :param ORDER BY date_created ASC LIMIT 10 OFFSET :page").params(param = search, page = (page*per_page-10))
+        res = db.engine.execute(stmt)
+        return res

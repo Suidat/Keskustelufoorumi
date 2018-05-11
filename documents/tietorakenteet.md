@@ -2,7 +2,7 @@ Tietorakenteita on viisi ja yksi abstrakti luokka, johon kaikki muut tietorakent
 
 Tietokantataulut ja tietokannat vastaavat täysin toisiaan. Tiettyjä vaatimuksia, kuten esim Account luokan UNIQUE(name) vaatimuksia ei ole lisätty Tietokantatauluun.
 
-
+Tietokantajärjestelmänä toimii Herokun PostgreSQL.
 
 
 CREATE TABLE-lauseet:
