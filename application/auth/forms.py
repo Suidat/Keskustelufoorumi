@@ -17,4 +17,7 @@ class LoginForm(FlaskForm):
 class EditForm(FlaskForm):
     password_old = PasswordField("Old Password")
     password_new1 = PasswordField("New Password", [validators.Length(min=3)])
-    password_new2 = PasswordField("Retype new password", [validators.Length(min=3)])
+    password_new2 = PasswordField("Retype new password")
+    
+    class Meta:
+        csrf = False

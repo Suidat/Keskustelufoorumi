@@ -34,8 +34,10 @@ class Account(Base):
     @staticmethod
     def change_password(arg, user_id):
         stmt = text("UPDATE Account SET password = :password WHERE id = :user").params(password = arg, user = user_id)
-        db.engine.execute(stmt)
+        res = db.engine.execute(stmt)
+        res.close()
         db.session.commit()
+
 
     @staticmethod
     def find_usernames_for_members(param):

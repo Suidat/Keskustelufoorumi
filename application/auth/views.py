@@ -38,6 +38,7 @@ def user_own():
 @login_required()
 def user_edit():
     form = EditForm(request.form)
+    groups = Groups.find_usernames_for_group_owners()
     if not form.validate():
         e = "Minimum length for name and password is 3"
         return render_template("index.html", groups = groups, error = e)
@@ -54,7 +55,7 @@ def user_edit():
             e = "Your passwords do not match"
     else:
         e = "Your old password was wrong"
-    groups = Groups.find_usernames_for_group_owners()
+
 
     return render_template("index.html", groups = groups, error = e)
 
