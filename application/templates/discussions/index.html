@@ -12,7 +12,7 @@
     <td>{{ m.message }}</td>
     <td>{{ m.username }}</td>
     <td>
-      {% if current_user.id == m.sender_id %}
+      {% if current_user.id == m.sender_id or current_user.id == ownerID %}
       <a href="{{url_for('message_delete', param=m.id)}}">Delete </a>
       <br />
       <a href="{{url_for('message_edit', param=m.id)}}">Edit</a>
@@ -22,7 +22,12 @@
   </tr>
   {% endfor %}
 </table>
-<br /><br /><br />
+<br />
+
+<a href="{{ url_for('discussion_home', target = target, page=current+1) }}">&lt;&lt; Newer messages</a>
+&emsp;&emsp;
+<a href="{{ url_for('discussion_home', target = target, page=current-1) }}">Older messages &gt;&gt;</a>
+<br /><br />
 <form method="POST" action="{{ url_for('messages_create', target = target) }}">
   <table>
     <tr>

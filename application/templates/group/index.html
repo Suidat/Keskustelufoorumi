@@ -12,7 +12,7 @@
       </tr>
       {% for d in discussions %}
       <tr>
-        <td><a href="{{url_for('discussion_home', target = d.id)}}"> {{ d.name }}</a></td>
+        <td><a href="{{url_for('discussion_home', target = d.id, page = 1)}}"> {{ d.name }}</a></td>
         <td>{{ d.username }}</td>
         <td>
         </td>

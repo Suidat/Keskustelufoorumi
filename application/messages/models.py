@@ -18,11 +18,15 @@ class Message(Base):
         return self.message
 
     @staticmethod
-    def find_messages_with_usernames(param):
-        stmnt = text("SELECT Account.name AS username, Message.* FROM Account, Message WHERE Account.id=Message.sender_id AND Message.discussion_id = :disc").params(disc = param)
+    def find_messages_with_usernames(param, page):
+        per_page = 10
+        stmnt = text("SELECT Account.name AS username, Message.* FROM Account, Message WHERE Account.id=Message.sender_id AND Message.discussion_id = :disc ORDER BY Message.date_created ASC LIMIT 10 OFFSET :page").params(disc = param, page = (page*per_page-10))
         res = db.engine.execute(stmnt)
-        return res
-        
+        result = []
+        for r in res:
+            result.append(r)
+        return result
+
     @staticmethod
     def delete_message_with_id(toDelete):
         stmt = text("DELETE FROM Message WHERE id = :id").params(id = toDelete)
