@@ -4,6 +4,7 @@
 {% block body %}
 
 <p> Edit Group </p>
+{{ error }}
 
 <form method="POST" action="{{ url_for('group_edit', param = id) }}">
   <table>
