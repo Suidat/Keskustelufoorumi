@@ -56,7 +56,6 @@ def auth_login():
         return render_template("users/loginform.html", form = LoginForm())
 
     form = LoginForm(request.form)
-    # mahdolliset validoinnit
 
     user = Account.query.filter_by(name=form.username.data, password=form.password.data).first()
     if not user:
@@ -64,7 +63,7 @@ def auth_login():
                                 error = "No such username or password")
 
     login_user(user)
-    return redirect(url_for("index"))
+    return redirect(url_for("user_own"))
 
 @app.route("/user/logout")
 def auth_logout():
