@@ -21,12 +21,8 @@ def discussion_home(target, page=1):
     if not disc and page != 1:
         return redirect(url_for("discussion_home", target = target, page = page-1))
 
-    group = Groups.query.filter_by(id = target).first()
-    f = False
-    if page is 1:
-        f = True
-
-    return render_template("discussions/index.html", messages = disc, form = MessageForm(), target = target, ownerID = group.owner_id, First = True, current = page)
+    group = Groups.query.filter_by(id = d.group_id).first()
+    return render_template("discussions/index.html", messages = disc, form = MessageForm(), target = target, ownerID = group.owner_id, current = page)
 
 
 @app.route("/groups/<int:param>/new", methods=["POST", "GET"])
@@ -38,7 +34,8 @@ def discussions_new(param):
 
     if request.method == "GET":
             return render_template("discussions/new.html", form = DiscussionForm(), param = param)
-    if not request.form.validate():
+    form = DiscussionForm(request.form)
+    if not form.validate():
         return render_template("discussions/new.html", form = DiscussionForm(), param = param, error = "Minimum length for name is 4")
     d = Discussion(request.form.get("name"), param, current_user.get_id())
     db.session().add(d)

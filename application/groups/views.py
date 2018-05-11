@@ -98,7 +98,7 @@ def group_edit(param):
 
     form = GroupForm(request.form)
     if not form.validate():
-        return render_template("group/edit.html", form = form, error = "Minimum length for name is 4
+        return render_template("group/edit.html", form = form, error = "Minimum length for name is 4")
     Groups.edit_group(form.name.data, param)
 
 

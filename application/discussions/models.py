@@ -20,11 +20,11 @@ class Discussion(Base):
         stmt = text("DELETE FROM Discussion WHERE id = :id; DELETE FROM Message WHERE discussion_id = :id").params(id = arg)
         db.engine.execute(stmt)
         db.session.commit()
-        
+
 
     @staticmethod
     def find_owned_discussions(arg):
-        stmt = text("SELECT Discussion.*, Account.id, COUNT(Message.id) AS amount FROM Account, Discussion LEFT OUTER JOIN Message ON Discussion.id = Message.discussion_id WHERE Discussion.owner_id = Account.id AND Account.id = :id GROUP BY discussion_id").params(id = arg)
+        stmt = text("SELECT Discussion.*, Account.id as user_id, COUNT(Message.id) AS amount FROM Account, Discussion LEFT OUTER JOIN Message ON Discussion.id = Message.discussion_id WHERE Discussion.owner_id = Account.id AND Account.id = :id GROUP BY Discussion.id").params(id = arg)
         res = db.engine.execute(stmt)
         return res
 
