@@ -18,7 +18,7 @@ def discussion_home(target, page=1):
     check_ban(d.group_id)
 
     disc = Message.find_messages_with_usernames(target, page)
-    if not disc:
+    if not disc and page != 1:
         return redirect(url_for("discussion_home", target = target, page = page-1))
 
     group = Groups.query.filter_by(id = target).first()
