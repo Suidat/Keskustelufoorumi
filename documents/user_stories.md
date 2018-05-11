@@ -11,6 +11,7 @@ As a user I want to be able to modify my old messages| Done |UPDATE Message SET 
 As a user I want to be able to delete my old messages| Done |DELETE FROM Message WHERE id = :id
 as a user I want messages to be paged | Done | SELECT Account.name AS username, Message.* FROM Account, Message WHERE Account.id=Message.sender_id AND Message.discussion_id = :disc ORDER BY Message.date_created ASC LIMIT 10 OFFSET :page
 As a user I want to be able to join groups| Done |
+As a user I want to be able to make a search for content | Done | SELECT * FROM Groups WHERE name LIKE :param ORDER BY date_created ASC LIMIT 10 OFFSET :page ja SELECT * FROM Discussion WHERE name LIKE :param ORDER BY date_created ASC LIMIT 10 OFFSET :page
 As an administrator I want to be able to ban users| Done |
 As an administrator I want to be able to add new users to my group/s | REMOVED
 As an administrator I want to be able to remove messages| Done | DELETE FROM Message WHERE id = :id
